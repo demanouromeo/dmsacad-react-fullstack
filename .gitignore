@@ -1,0 +1,58 @@
+# Ce dépôt racine regroupe deux projets, chacun avec son propre dépôt Git et son propre
+# .gitignore (backend/.gitignore, frontend/.gitignore). Les règles ci-dessous ne servent
+# qu'en cas d'initialisation d'un dépôt Git au niveau racine (fichiers ajoutés directement
+# à la racine, outils, scripts partagés, etc.) — elles ne remplacent pas les .gitignore
+# de backend/ et frontend/.
+
+# Dépendances
+**/node_modules
+**/vendor
+
+# Environnement / secrets
+**/.env
+**/.env.backup
+**/.env.production
+!**/.env.example
+
+# Builds
+**/dist
+**/dist-ssr
+**/build
+**/public/build
+**/public/hot
+**/public/storage
+
+# Logs
+**/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Caches / fichiers générés
+**/.phpunit.cache
+**/.phpunit.result.cache
+**/*.local
+
+# IDE / éditeurs
+.fleet
+.idea
+.nova
+.vscode/*
+!.vscode/extensions.json
+.zed
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+frontend/.claude
+frontend/IMPLEMENTATION_PLAN.md
+frontend/CLAUDE.md
+backend/CLAUDE.md
+frontend/PRIVACY_POLICY.md
