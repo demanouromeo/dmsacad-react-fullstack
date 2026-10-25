@@ -63,3 +63,22 @@ gets retried rather than immediately treated as "no marks". **Any future feature
 scholarships, and every other module still unbuilt per `frontend/CLAUDE.md`'s status table — should reuse
 `mapWithConcurrency` from the start**, rather than a bare `Promise.all` over every item, to avoid
 re-hitting this same remote connection ceiling.
+
+## PDF list exports: shared table style and the `compact` option
+
+Generic list PDFs (classes, staff, subjects, discipline, fill rate, ...) all go through
+`frontend/src/utils/exportData.ts`'s `exportRowsToPdf`; `StudentManager`'s bespoke student list, the
+mark sheets (`exportMarkSheets.ts`) and `CourseAssignmentManager`'s print use the same look. Reuse it
+rather than restyling per screen:
+
+- **Only the header row is colored** (blue `[41, 128, 185]`, white text, no border). Body cells are white
+  (no zebra striping) with a thin gray border (`lineColor [190, 190, 190]`, `lineWidth 0.1`). This needs
+  `theme: "grid"` — the default `"striped"` theme zebra-fills the body and has no borders.
+- **`exportRowsToPdf`'s last param `compact`** (default `true`, so every generic list PDF gets it) shrinks
+  rows to fit more lines per page: font 9 and the same tight cell padding as the student list
+  (`{ top: 0.75, bottom: 0.5, left: 1, right: 2 }`). Pass `false` (positionally, after
+  `includeSignature`) only to opt a screen out.
+- **Deliberately excluded**: the report card (RC, "bulletin de notes") and honors roll (HR, "tableau
+  d'honneur") PDFs — do not restyle them. Other bespoke report PDFs (effectifs, classement, synthèses,
+  stats, timetables, "Notes trim N") still use their own striped/custom tables. The PV (`utils/pv/exportPvPdf.ts`)
+  and the provisional list (`utils/exportProvisionalList.ts`) were later moved to the same compact grid look.
