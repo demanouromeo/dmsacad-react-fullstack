@@ -72,7 +72,7 @@ mark sheets (`exportMarkSheets.ts`) and `CourseAssignmentManager`'s print use th
 rather than restyling per screen:
 
 - **Only the header row is colored** (blue `[41, 128, 185]`, white text, no border). Body cells are white
-  (no zebra striping) with a thin gray border (`lineColor [190, 190, 190]`, `lineWidth 0.1`). This needs
+  (no zebra striping) with a thin black border (`lineColor [0, 0, 0]`, `lineWidth 0.05`). This needs
   `theme: "grid"` — the default `"striped"` theme zebra-fills the body and has no borders.
 - **`exportRowsToPdf`'s last param `compact`** (default `true`, so every generic list PDF gets it) shrinks
   rows to fit more lines per page: font 9 and the same tight cell padding as the student list
